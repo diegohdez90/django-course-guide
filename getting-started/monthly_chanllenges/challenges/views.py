@@ -31,3 +31,34 @@ def monthly_challenge(request: HttpRequest, month: str):
         return HttpResponseNotFound('Month not supported')
     return HttpResponse(challenge_text)
 
+
+def monthly_challenge_by_number_month(request: HttpRequest, month: int):
+    challenge_text = ""
+    if month == 1:
+        challenge_text = "Run"
+    elif month == 2:
+        challenge_text = "Read"
+    elif month == 3:
+        challenge_text = "Walk"
+    elif month == 4:
+        challenge_text = "Jump"
+    elif month == 5:
+        challenge_text = "Read"
+    elif month == 6:
+        challenge_text = "Run"
+    elif month == 7:
+        challenge_text = "Walk"
+    elif month == 6:
+        challenge_text = "Jump"
+    elif month == 9:
+        challenge_text = "Run"
+    elif month == 10:
+        challenge_text = "Walk"
+    elif month == 11:
+        challenge_text = "Jump"
+    elif month == 12:
+        challenge_text = "Read"
+    else:
+        return HttpResponseNotFound('Month not supported')
+    return HttpResponse(challenge_text)
+
