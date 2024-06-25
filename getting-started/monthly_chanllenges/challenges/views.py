@@ -4,6 +4,25 @@ from django.urls import reverse
 
 from .data import challenges
 
+def index(request):
+    months = list(challenges.keys())
+    items = ""
+    for month in months:
+        month_path = reverse('monthly_challenge', args=[month])
+        month_capitalize = month.capitalize()
+        items = items + f"""
+                <li>
+                    <a href=\"{month_path}\">{month_capitalize}</a>
+                </li>
+            """
+    html = f"""
+            <ul>
+                {items}
+            </ul>
+        """
+    return HttpResponse(html)
+
+
 def monthly_challenge(request: HttpRequest, month: str):
     try:
         challenge_text = challenges[month]
