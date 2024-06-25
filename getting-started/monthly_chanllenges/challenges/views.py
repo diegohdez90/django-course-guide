@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 from .data import challenges
 
@@ -15,7 +16,8 @@ def monthly_challenge_by_number_month(request: HttpRequest, month: int):
     try:
         keys =list(challenges.keys())
         month_name = keys[month - 1]
-        return HttpResponseRedirect("/challenges/%s" % month_name)
+        redirect_path = reverse('monthly_challenge', args=[month_name])
+        return HttpResponseRedirect(redirect_path)
     except:
         return HttpResponseNotFound('Month not supported. Try again')
     
