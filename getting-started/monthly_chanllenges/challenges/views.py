@@ -7,9 +7,12 @@ from .data import challenges
 def monthly_challenge(request: HttpRequest, month: str):
     try:
         challenge_text = challenges[month]
+        html = f"""
+                <h1>{month.capitalize()}: {challenge_text}</h1>
+            """
     except:
-        return HttpResponseNotFound('Month not supported')
-    return HttpResponse("%s: %s" % (month.capitalize(), challenge_text))
+        return HttpResponseNotFound('<h1>Month not supported</h1>')
+    return HttpResponse(html)
 
 
 def monthly_challenge_by_number_month(request: HttpRequest, month: int):
@@ -19,5 +22,5 @@ def monthly_challenge_by_number_month(request: HttpRequest, month: int):
         redirect_path = reverse('monthly_challenge', args=[month_name])
         return HttpResponseRedirect(redirect_path)
     except:
-        return HttpResponseNotFound('Month not supported. Try again')
+        return HttpResponseNotFound('<h1>Month not supported. Try again</h1>')
     
