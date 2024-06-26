@@ -27,7 +27,16 @@ def index(request):
 def monthly_challenge(request: HttpRequest, month: str):
     try:
         challenge_text = challenges[month]
-        html = render_to_string(template_name='index.html')
+        html = render_to_string(template_name='challenge.html',
+                                context={
+                                    'text': challenge_text,
+                                    'month': month.capitalize()
+                                })
+        # html = render(request, 'challenge.html',
+        #               context={
+        #                   'text': challenge_text,
+        #                   'month': month.capitalize()
+        # })
     except:
         return HttpResponseNotFound('<h1>Month not supported</h1>')
     return HttpResponse(html)
