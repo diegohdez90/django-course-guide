@@ -10,18 +10,10 @@ def index(request):
     items = ""
     for month in months:
         month_path = reverse('monthly_challenge', args=[month])
-        month_capitalize = month.capitalize()
-        items = items + f"""
-                <li>
-                    <a href=\"{month_path}\">{month_capitalize}</a>
-                </li>
-            """
-    html = f"""
-            <ul>
-                {items}
-            </ul>
-        """
-    return HttpResponse(html)
+    
+    return render(request, 'index.html', context={
+        'months': months
+    })
 
 
 def monthly_challenge(request: HttpRequest, month: str):
