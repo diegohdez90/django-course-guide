@@ -1,5 +1,8 @@
 {% extends "base.html" %}
-
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static "challenges/challenge.css" %}">
+{% endblock css %}
 {% block title %}
 Challenge
 {% endblock %}
@@ -8,8 +11,8 @@ Challenge
 {% include "includes/nav.html" %}
 <h1>{{ month }}</h1>
 {% if text is not None %}
-<p>{{ text }}</p>
+<p class='fallback'>{{ text }}</p>
 {% else %}
-<p>No challenge found</p>
+<p class='fallback'>No challenge found</p>
 {% endif %}
 {% endblock %}

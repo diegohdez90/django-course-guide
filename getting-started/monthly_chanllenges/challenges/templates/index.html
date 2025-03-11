@@ -2,14 +2,13 @@
 {% load static %}
 {% block css %}
 <link rel="stylesheet" href="{% static "challenges/challenges.css" %}">
-{% endblock %}
+{% endblock css %}
 {% block title %}
 All challenges
 {% endblock title %}
 
 {% block body %}
 {% include "includes/nav.html" %}
-<h1>Months challenges</h1>
 <ul>
 {% for month in months %}
     <li>
